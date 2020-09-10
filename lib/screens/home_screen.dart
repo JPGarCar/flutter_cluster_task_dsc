@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cluster_task/constants.dart';
 import 'package:flutter_cluster_task/utility/api_json_grabber.dart';
 import 'package:flutter_cluster_task/widgets/app_drawer.dart';
 
@@ -55,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: dataList.length,
                   );
                 } else {
-                  return CircularProgressIndicator();
+                  return CircularProgressIndicator(
+                    backgroundColor: mainColor,
+                  );
                 }
               },
             ),
