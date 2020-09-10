@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cluster_task/constants.dart';
 import 'package:flutter_cluster_task/widgets/app_drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -64,7 +65,12 @@ class _AboutScreenState extends State<AboutScreen> {
                         child: Text(textDisplayed),
                       ),
                       // Button
-                      MaterialButton(
+                      RaisedButton(
+                        textColor: mainColor,
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onPressed: buttonOnPressed,
                         child: Text(buttonText),
                       )

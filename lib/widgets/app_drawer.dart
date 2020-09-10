@@ -42,12 +42,16 @@ class AppDrawer extends StatelessWidget {
                 ),
                 // List of Children Buttons
                 ListTile(
+                  selected:
+                      ModalRoute.of(context).settings.name == 'HomeScreen',
                   leading: Icon(Icons.home),
                   title: Text('Home'),
                   onTap: () =>
                       Navigator.popAndPushNamed(context, HomeScreen.screenId),
                 ),
                 ListTile(
+                  selected:
+                      ModalRoute.of(context).settings.name == 'AboutScreen',
                   leading: Icon(Icons.info_outline),
                   title: Text('About'),
                   onTap: () =>
