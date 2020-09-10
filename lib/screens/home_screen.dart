@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cluster_task/utility/api_json_grabber.dart';
 import 'package:flutter_cluster_task/widgets/app_drawer.dart';
+
+// Api string
+final apiString = 'https://wayhike.com/dsc/demo_app_api.php';
+
+// Card textStyle, margin, and padding
+final cardTextStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);
+final cardMargin = EdgeInsets.symmetric(vertical: 5, horizontal: 15);
+final cardPadding = EdgeInsets.symmetric(vertical: 20, horizontal: 15);
 
 class HomeScreen extends StatefulWidget {
   // Home Screen ID for route
@@ -16,27 +28,37 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(),
         drawer: AppDrawer(),
-        body: Container(
-          child: FutureBuilder(
-            future: ,
-            builder: (context, data) {
-
-
-              if (data.hasData) {
-                var dataList = data.data;
-                return ListView.builder(
-                  itemBuilder: (context, int) {
-                    return Card(
-                      child: Text(dataList[int]),
-                    );
-                  },
-                  itemCount: ,
-                );
-              } else {
-                return CircularProgressIndicator();
-              }
-
-            },
+        body: Center(
+          child: Container(
+            child: FutureBuilder(
+              future: ApiJsonGrabber(url: apiString).getData(),
+              builder: (context, data) {
+                if (data.hasData) {
+                  // grab the 'event_titles' data from the asyncdata
+                  var dataList = data.data['event_titles'];
+                  return ListView.builder(
+                    itemBuilder: (context, int) {
+                      return Card(
+                        margin: cardMargin,
+                        child: Padding(
+                          padding: cardPadding,
+                          child: Center(
+                            child: Text(
+                              dataList[int],
+                              textAlign: TextAlign.center,
+                              style: cardTextStyle,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: dataList.length,
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
           ),
         ),
       ),
