@@ -16,7 +16,29 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(),
         drawer: AppDrawer(),
-        body: SizedBox(),
+        body: Container(
+          child: FutureBuilder(
+            future: ,
+            builder: (context, data) {
+
+
+              if (data.hasData) {
+                var dataList = data.data;
+                return ListView.builder(
+                  itemBuilder: (context, int) {
+                    return Card(
+                      child: Text(dataList[int]),
+                    );
+                  },
+                  itemCount: ,
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+
+            },
+          ),
+        ),
       ),
     );
   }
